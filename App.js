@@ -1,6 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 import { Exemple } from './exemple';
+import ComposantEtat from './ComposantEtat';
 /* import Exemple from './exemple'; */
 
 export default function App() {
@@ -11,6 +12,7 @@ export default function App() {
       <Text>Hello world ! </Text>
       <StatusBar style="auto" />
       <Exemple title="toto" />
+      <ComposantEtat />
     </View>
   );
 }

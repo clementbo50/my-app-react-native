@@ -1,17 +1,16 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
+import { Exemple } from './exemple';
+/* import Exemple from './exemple'; */
 
 export default function App() {
-    const tableau = [1, 2, 3];
 
   return (
   
     <View style={styles.container}>
       <Text>Hello world ! </Text>
-      {
-        tableau.map((element, index) => <Text key={index} > {element}</Text>)
-      }
       <StatusBar style="auto" />
+      <Exemple title="toto" />
     </View>
   );
 }

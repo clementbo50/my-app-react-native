@@ -1,22 +1,35 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
-import { useEffect, useState } from 'react';
+import { Button, StyleSheet, Text, View } from 'react-native';
+import { useContext, useEffect, useState } from 'react';
 import Board from './src/Board';
+import ThemeContextWrapper, { ThemeContext } from './src/themeContextWrapper';
 
 export default function App() {
 
   return (
-      <View style={styles.container}>
-        <Board size={3} />
-      </View>
+    <ThemeContextWrapper>
+      <MyApp />
+    </ThemeContextWrapper>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+const MyApp = () => {
+    const { theme, toggleTheme } = useContext(ThemeContext);
+
+  const styles = StyleSheet.create({
+      container: {
+        flex: 1,
+        backgroundColor: theme.background,
+        alignItems: 'center',
+        justifyContent: 'center',
+      },
+  });
+
+
+  return(
+    <View style={styles.container}>
+      <Board size={3} />
+      <Button title="Changer de thème" onPress={() => toggleTheme() }></Button>
+    </View>
+  )
+}

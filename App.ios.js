@@ -3,10 +3,7 @@ import { StyleSheet, Text, View, Platform } from 'react-native';
 export default function App() {
   return (
     <View style={styles.container}>
-      <Text>{Platform.OS}</Text>
-      <Text>{Platform.Version}</Text>
-
-      <Text>Web ! </Text>
+      <Text>IOS </Text>
     </View>
   );
 }

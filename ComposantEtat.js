@@ -36,20 +36,10 @@ class ComposantEtat extends Component {
         // Retourne le JSX qui définit l'interface utilisateur
         return (
             <>
-                {/* Fragment (<>) pour regrouper plusieurs éléments sans ajouter de nœud DOM supplémentaire */}
-                {/* Affiche la valeur de counter directement depuis this.state */}
                 <Text>{this.state.counter}</Text>
-                {/* Affiche la valeur de counter1, obtenue via une variable intermédiaire */}
                 <Text>{ counter1 }</Text>
-                {/* Affiche la valeur de counter, obtenue par déstructuration */}
                 <Text>{ counter }</Text>
-                {/* Bouton qui appelle la méthode moreCounter lorsqu'il est pressé */}
                 <Button title="Appuyer ici" onPress={this.moreCounter}></Button>
-                {/* Grâce au binding dans le constructeur, this.moreCounter est correctement lié */}
-                {/* Alternative commentée : binding implicite avec une fonction fléchée */}
-                {/* <Button title="Appuyer ici" onPress={() => this.moreCounter()}></Button> */}
-                {/* Le binding implicite avec () => this.moreCounter() évite le besoin de bind dans le constructeur */}
-                {/* Cependant, cela crée une nouvelle fonction à chaque rendu, ce qui peut être moins performant */}
             </>
         );
     }

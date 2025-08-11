@@ -1,18 +1,37 @@
 import { StatusBar } from 'expo-status-bar';
 import img from './assets/donut.jpg';
-import { Alert, Button, Image, StyleSheet, Text, View } from 'react-native';
+import { Alert, Button, Image, ScrollView, StyleSheet, Text, TextInput, View } from 'react-native';
 import { useContext, useEffect, useState } from 'react';
 import Board from './src/Board';
 import ThemeContextWrapper, { ThemeContext } from './src/themeContextWrapper';
 
 
 export default function App() {
-
+  const [text, setText] = useState('');
   return (
     <ThemeContextWrapper>
-       <MyApp />
-      {/*   <Image source ={img} /> */}
-      {/*  <Image style={{ width: 250, height: 250 }}source={{uri: "https://t3.ftcdn.net/jpg/02/45/78/98/360_F_245789812_U5YAKoU5bO1vPUlmMygG3RYwRQcDsjuD.jpg"}} /> */}
+       {/* <MyApp /> */}
+      <ScrollView>
+          <TextInput style={{ backgroundColor: "gray" }} value={text} onChangeText={(text) => setText(text)} />
+          <Text>Hello world ! </Text>
+          <Text>Hello world ! </Text>
+          <Text>Hello world ! </Text>
+          <Text>Hello world ! </Text>
+          <Text>Hello world ! </Text>
+          <Text>Hello world ! </Text>
+          <Text>Hello world ! </Text>
+          <Text>Hello world ! </Text>
+          <Text>Hello world ! </Text>
+          <Text>Hello world ! </Text>
+          <Text>Hello world ! </Text>
+          <Text>Hello world ! </Text>
+          <Text>Hello world ! </Text>
+          <Text>Hello world ! </Text>
+          <Text>Hello world ! </Text>
+          <Text>Hello world ! </Text>
+          <Text>Hello world ! </Text>
+        </ScrollView>
+                      
     </ThemeContextWrapper>
   );
 }

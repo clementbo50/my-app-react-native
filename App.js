@@ -1,35 +1,34 @@
-import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { StyleSheet, Text, View, Platform } from 'react-native';
-import HomeScreen from './screens/HomeScreen';  
-import AboutScreen from './screens/AboutScreen';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import SettingsScreen from './screens/SettingsScreen';
+import { useEffect, useState } from 'react';
+import { ScrollView, StyleSheet, Text, TextInput, View } from 'react-native';
+import { search } from './src/api';
+import Movie from './src/Movie';
 
-const Stack = createNativeStackNavigator();
-const Tabs = createBottomTabNavigator();
-
-const Home = () => (
-  <Stack.Navigator>
-      <Stack.Screen name="home" component={HomeScreen} />
-      <Stack.Screen name="settings" component={SettingsScreen} />
-  </Stack.Navigator>
-)
 
 export default function App() {
-  return (
-  <NavigationContainer>
-{/*  Affiche la barre de navigation en haut de l'écran 
-      <Stack.Navigator>
-        <Stack.Screen name="home" component={HomeScreen} />
-        <Stack.Screen name="about" component={AboutScreen} />
-      </Stack.Navigator> */}
+  const [movies, setMovies] = useState([]);
+  const [searchTerm, setSearchTerm] = useState('');
 
-      <Tabs.Navigator>
-        <Tabs.Screen name="root" component={Home} />
-        <Tabs.Screen name="about" component={AboutScreen} />       
-      </Tabs.Navigator>
-  </NavigationContainer>
+  useEffect(() => {
+    search(searchTerm).then((response) => setMovies(response.data));
+  }, [searchTerm]);
+
+  return (
+    <View style={styles.container}>
+       <Text>Retrouvez nos derniers films ! </Text>
+        <>
+          <TextInput 
+            style={styles.input}
+            value={searchTerm} 
+            onChangeText={(text) => setSearchTerm(text)}>  
+          </TextInput>
+        </>
+        <ScrollView>
+          {
+            movies.map((data) => <Movie data={data}></Movie> )
+          }
+        </ScrollView>
+
+    </View>
   );
 }
 
@@ -37,7 +36,16 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    display: 'flex',
+    flexDirection: 'column',
+    alignContent: 'stretch',
+    margin: 10,
+    padding: 10,
+    textAlign: 'center'
   },
+  input: {
+    backgroundColor: 'grey',
+    padding: 20,
+    margin: 20,
+  }
 });

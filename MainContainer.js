@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 import Main from "./Main";
-import { clearMovies, receiveMovie } from "./src/redux/movies/Actions";
+import { fetchMovies } from "./src/redux/movies/Actions";
 
 const mapStateToProps = (state) => ({
     movies: state.movie.movies,
@@ -9,10 +9,10 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
-    onReceiveMovie: (movie) => dispatch(receiveMovie(movie)),
-    onClearMovies: () => dispatch(clearMovies()),
+    onFetchMovies: (term) => dispatch(fetchMovies(term)),
+
 })
-/* il ne reste plus qu'a brancher nos composants à la méthode connect, elle prend en entré deux paramètre la première est une fn qui définit les propriétés de notre state
+/* il ne reste plus qu'a brancher nos composants à la méthode connect, ewlle prend en entré deux paramètre la première est une fn qui définit les propriétés de notre state
 que le l'on va asigné au props de notre composant, la deuxième conçerne les actions que l'on va transmetre à notre composant */
 const MainContainer = connect(mapStateToProps, mapDispatchToProps)(Main);
 

@@ -1,15 +1,23 @@
 import { Provider } from 'react-redux';
-import { combineReducers, createStore } from 'redux';
-import MovieReducer from './src/redux/movies/reducer';
+import { applyMiddleware, combineReducers, createStore } from 'redux';
+import MovieReducer from './src/redux/movies/Reducer';
 import MainContainer from './MainContainer';
+import createSagaMiddleware from 'redux-saga';
+import { rootSagas } from './src/redux/rootSagas';
+
+
+const sagaMiddleware = createSagaMiddleware();
 
 /* Branchage du reducer à notre application en créant le store */
 const store = createStore(
   /* Il pourrais y avoir à l'avenir d'autre reducer la méthode combineReducers est la pour ça */
   combineReducers({
     movie: MovieReducer,
-  })
-)
+  }),
+  applyMiddleware(sagaMiddleware)
+);
+
+sagaMiddleware.run(rootSagas);
 
 
 export default function App() {
